@@ -2,8 +2,4 @@ Um petshop precisa de um site para vender seus produtos.
 A aplicação visa aumentar os negócios e vender mais produtos via internet.Terá cadastro de clientes e produtos. 
 Para Clientes terá campos de Nome, CPF, Data de Nascimento, E-mail, Número de Contato e animais que possui. Os Produtos terão nome, disponibilidade, categoria e descrição.
 Terá login de adminstrador onde poderá ter acesso e adicionar novos produtos ao site.
-Funções:
-CadastrarCliente
-CadastrarProdutos
-RealizarCompras
 
