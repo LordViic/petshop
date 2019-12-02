@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="pt-br">
+    <head>
+            <meta charset="utf-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+            <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.0/css/bootstrap.min.css" integrity="sha384-SI27wrMjH3ZZ89r4o+fGIJtnzkAnFs3E4qz9DIYioCQ5l9Rd/7UAa8DHcaL8jkWt" crossorigin="anonymous">>
+            <style>
+               body {
+                    background-color: cornsilk;
+                }
+
+            </style>
+            <img src="img/vinapet.png" width="10%">
+            <p>Vinapet</p>
+            <nav class="navbar navbar-dark bg-dark">
+                    <a class="navbar-brand" href="#">Cães</a>
+                    <a class="navbar-brand" href="#">Gatos</a>
+                    <a class="navbar-brand" href="#">Pássaros</a>
+                    <a class="navbar-brand" href="#">Acessórios</a>
+                    <a class="navbar-brand" href="#">Roupas</a>
+                    <a class="navbar-brand" href="#" align="right">Cadastre-se</a>
+                    <a class="navbar-brand" href="#" align="right">Seus Pedidos</a>
+            </nav>
+ 
+    </head>
+    <body>
+        <br>
+            <form>
+                    <div class="container">
+                        <h1 align="center">Cadastro de Produtos</h1>
+                        <br>
+                    <div class="form-group">
+                        <label for="fotoProduto">Foto do Produto</label>
+                        <input type="file" class="form-control-file" id="fotoProduto">
+                    </div>
+                    <div class="form-group">
+                      <label for="nomeProduto">Nome do Produto</label>
+                      <input type="text" class="form-control" id="nomeProduto">
+                    </div>
+                    <div class="form-group">
+                      <label for="preco">Preço</label>
+                      <input type="text" class="form-control" id="preco">
+                      <br>  
+                      <fieldset>
+                            <p>
+                               <label>Categoria</label>
+                               <select id = "categoria">
+                                 <option value = "Cães">Cães</option>
+                                 <option value = "Gatos">Gatos</option>
+                                 <option value = "Pássaros">Pássaros</option>
+                                 <option value = "Acessórios">Acessórios</option>
+                                 <option value = "Roupas">Roupas</option>
+                               </select>
+                            </p>
+                         </fieldset>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Enviar</button>
+                    <button type="reset" class="btn btn-primary">Limpar</button>
+                </div>
+                  </form>
+    </body>
+</html>
