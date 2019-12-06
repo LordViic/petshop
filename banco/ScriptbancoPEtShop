@@ -1,0 +1,182 @@
+-- MySQL Workbench Forward Engineering
+
+SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
+SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
+SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
+
+-- -----------------------------------------------------
+-- Schema mydb
+-- -----------------------------------------------------
+DROP SCHEMA IF EXISTS `mydb` ;
+
+-- -----------------------------------------------------
+-- Schema mydb
+-- -----------------------------------------------------
+CREATE SCHEMA IF NOT EXISTS `mydb` DEFAULT CHARACTER SET utf8 ;
+USE `mydb` ;
+
+-- -----------------------------------------------------
+-- Table `mydb`.`contato`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `mydb`.`contato` ;
+
+CREATE TABLE IF NOT EXISTS `mydb`.`contato` (
+  `idcontato` INT NOT NULL,
+  `email` VARCHAR(45) NULL,
+  `telefone1` VARCHAR(45) NULL,
+  `telefone2` VARCHAR(45) NULL,
+  PRIMARY KEY (`idcontato`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `mydb`.`pet`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `mydb`.`pet` ;
+
+CREATE TABLE IF NOT EXISTS `mydb`.`pet` (
+  `idpet` INT NOT NULL,
+  `nome` VARCHAR(45) NULL,
+  `especie` VARCHAR(45) NULL,
+  `raca` VARCHAR(45) NULL,
+  `tamanho` VARCHAR(45) NULL,
+  `peso` VARCHAR(45) NULL,
+  `nascimento` VARCHAR(45) NULL,
+  `obs` VARCHAR(45) NULL,
+  PRIMARY KEY (`idpet`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `mydb`.`endereco`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `mydb`.`endereco` ;
+
+CREATE TABLE IF NOT EXISTS `mydb`.`endereco` (
+  `idendereco` INT NOT NULL,
+  `logradouro` VARCHAR(45) NULL,
+  `numero` VARCHAR(45) NULL,
+  `bairro` VARCHAR(45) NULL,
+  `cidade` VARCHAR(45) NULL,
+  `estado` VARCHAR(45) NULL,
+  `cep` VARCHAR(45) NULL,
+  `obs` VARCHAR(45) NULL,
+  PRIMARY KEY (`idendereco`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `mydb`.`cliente`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `mydb`.`cliente` ;
+
+CREATE TABLE IF NOT EXISTS `mydb`.`cliente` (
+  `idcliente` INT NOT NULL AUTO_INCREMENT,
+  `nome` VARCHAR(45) NULL,
+  `pet_idpet` INT NOT NULL,
+  `contato_idcontato` INT NOT NULL,
+  `pet_idpet1` INT NOT NULL,
+  `endereco_idendereco` INT NOT NULL,
+  PRIMARY KEY (`idcliente`, `pet_idpet`, `contato_idcontato`, `pet_idpet1`, `endereco_idendereco`),
+  INDEX `fk_cliente_contato1_idx` (`contato_idcontato` ASC) VISIBLE,
+  INDEX `fk_cliente_pet1_idx` (`pet_idpet1` ASC) VISIBLE,
+  INDEX `fk_cliente_endereco1_idx` (`endereco_idendereco` ASC) VISIBLE,
+  CONSTRAINT `fk_cliente_contato1`
+    FOREIGN KEY (`contato_idcontato`)
+    REFERENCES `mydb`.`contato` (`idcontato`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_cliente_pet1`
+    FOREIGN KEY (`pet_idpet1`)
+    REFERENCES `mydb`.`pet` (`idpet`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_cliente_endereco1`
+    FOREIGN KEY (`endereco_idendereco`)
+    REFERENCES `mydb`.`endereco` (`idendereco`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `mydb`.`produto`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `mydb`.`produto` ;
+
+CREATE TABLE IF NOT EXISTS `mydb`.`produto` (
+  `idproduto` INT NOT NULL,
+  `nome` VARCHAR(45) NULL,
+  `marca` VARCHAR(45) NULL,
+  `categoria` VARCHAR(45) NULL,
+  `preco` VARCHAR(45) NULL,
+  `obs` VARCHAR(45) NULL,
+  PRIMARY KEY (`idproduto`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `mydb`.`produto_has_cliente`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `mydb`.`produto_has_cliente` ;
+
+CREATE TABLE IF NOT EXISTS `mydb`.`produto_has_cliente` (
+  `produto_idproduto` INT NOT NULL,
+  `cliente_idcliente` INT NOT NULL,
+  `cliente_pet_idpet` INT NOT NULL,
+  PRIMARY KEY (`produto_idproduto`, `cliente_idcliente`, `cliente_pet_idpet`),
+  INDEX `fk_produto_has_cliente_cliente1_idx` (`cliente_idcliente` ASC, `cliente_pet_idpet` ASC) VISIBLE,
+  INDEX `fk_produto_has_cliente_produto1_idx` (`produto_idproduto` ASC) VISIBLE,
+  CONSTRAINT `fk_produto_has_cliente_produto1`
+    FOREIGN KEY (`produto_idproduto`)
+    REFERENCES `mydb`.`produto` (`idproduto`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_produto_has_cliente_cliente1`
+    FOREIGN KEY (`cliente_idcliente` , `cliente_pet_idpet`)
+    REFERENCES `mydb`.`cliente` (`idcliente` , `pet_idpet`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `mydb`.`vacinas`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `mydb`.`vacinas` ;
+
+CREATE TABLE IF NOT EXISTS `mydb`.`vacinas` (
+  `idvacinas` INT NOT NULL,
+  `nome` VARCHAR(45) NULL,
+  `obs` VARCHAR(45) NULL,
+  PRIMARY KEY (`idvacinas`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `mydb`.`pet_has_vacinas`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `mydb`.`pet_has_vacinas` ;
+
+CREATE TABLE IF NOT EXISTS `mydb`.`pet_has_vacinas` (
+  `pet_idpet` INT NOT NULL,
+  `vacinas_idvacinas` INT NOT NULL,
+  PRIMARY KEY (`pet_idpet`, `vacinas_idvacinas`),
+  INDEX `fk_pet_has_vacinas_vacinas1_idx` (`vacinas_idvacinas` ASC) VISIBLE,
+  INDEX `fk_pet_has_vacinas_pet1_idx` (`pet_idpet` ASC) VISIBLE,
+  CONSTRAINT `fk_pet_has_vacinas_pet1`
+    FOREIGN KEY (`pet_idpet`)
+    REFERENCES `mydb`.`pet` (`idpet`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_pet_has_vacinas_vacinas1`
+    FOREIGN KEY (`vacinas_idvacinas`)
+    REFERENCES `mydb`.`vacinas` (`idvacinas`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+SET SQL_MODE=@OLD_SQL_MODE;
+SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
+SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
