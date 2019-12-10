@@ -12,14 +12,14 @@
             </style>
             <img src="img/vinapet.png" width="10%">
             <p>Vinapet</p>
-            <nav class="navbar navbar-dark bg-dark">
-                    <a class="navbar-brand" href="#">Cães</a>
-                    <a class="navbar-brand" href="#">Gatos</a>
-                    <a class="navbar-brand" href="#">Pássaros</a>
-                    <a class="navbar-brand" href="#">Acessórios</a>
-                    <a class="navbar-brand" href="#">Roupas</a>
-                    <a class="navbar-brand" href="adicionarCliente.html">Cadastre-se</a>
-                    <a class="navbar-brand" href="#">Seus Pedidos</a>
+              <nav class="navbar navbar-dark bg-dark">
+                <a class="navbar-brand" href="categoria.html">Cães</a>
+                <a class="navbar-brand" href="categoria.html">Gatos</a>
+                <a class="navbar-brand" href="categoria.html">Pássaros</a>
+                <a class="navbar-brand" href="categoria.html">Acessórios</a>
+                <a class="navbar-brand" href="categoria.html">Roupas</a>
+                <a class="navbar-brand" href="adicionarCliente.html">Cadastre-se</a>
+                <a class="navbar-brand" href="carrinho.html">Seus Pedidos</a>
             </nav>
  
     </head>
@@ -45,19 +45,43 @@
                       <label for="marca">Marca</label>
                       <input type="text" class="form-control" id="marca">
                     </div>
+                    <div class="form-group">
+                      <label for="estoque">Quantidade no Estoque</label>
+                      <input type="number" class="form-control" id="estoque">
+                    </div>
                       <br>  
-                      <fieldset>
-                            <p>
-                               <label>Categoria</label>
-                               <select id = "categoria">
-                                 <option value = "Cães">Cães</option>
-                                 <option value = "Gatos">Gatos</option>
-                                 <option value = "Pássaros">Pássaros</option>
-                                 <option value = "Acessórios">Acessórios</option>
-                                 <option value = "Roupas">Roupas</option>
-                               </select>
-                            </p>
-                         </fieldset>
+                      <fieldset class = "form-group">
+                        <legend   class = "col-form-label col-sm-2 pt-0">Categoria</legend>
+                        <div      class = "form-check">
+                        <input    class = "form-check-input" type = "checkbox" value = "caes" id = "caes">
+                        <label    class = "form-check-label" for  = "caes">
+                                              Cães
+                                      </label>
+                      </div>
+                      <div      class = "form-check">
+                        <input    class = "form-check-input" type = "checkbox" value = "gatos" id = "gatos">
+                        <label    class = "form-check-label" for  = "gatos">
+                                              Gatos
+                                      </label>
+                      </div>
+                      <div      class = "form-check">
+                        <input    class = "form-check-input" type = "checkbox" value = "passaros" id = "passaros">
+                        <label    class = "form-check-label" for  = "passaros">
+                                              Pássaros
+                                      </label>
+                      </div>
+                      <div      class = "form-check">
+                        <input    class = "form-check-input" type = "checkbox" value = "acessorios" id = "acessorios">
+                        <label    class = "form-check-label" for  = "acessorios">
+                                              Acessórios
+                                      </label>
+                      </div>
+                      <div      class = "form-check">
+                        <input    class = "form-check-input" type = "checkbox" value = "roupas" id = "roupas">
+                        <label    class = "form-check-label" for  = "caes">
+                                              Roupas
+                                      </label>
+                      </div>
                     <div class="form-group">
                       <label for="obs">Observações</label>
                       <textarea type="text" class="form-control" id="obs"></textarea>
