@@ -1,9 +1,0 @@
-Um petshop precisa de um site para ampliar suas vendas.
-A aplicação visa aumentar os negócios e vender mais produtos via internet.Terá cadastro de clientes e produtos. 
-Para Clientes terá campos de Nome, Data de Nascimento, E-mail, Número de Contato e animais que possui. Os Produtos terão nome, disponibilidade, categoria e descrição.
-Terá login de adminstrador onde poderá ter acesso e adicionar novos produtos ao site, que terá foto e categoria.
-O site será sempre atualizado de acordo com o estoque.
-Os clientes vão encontrar produtos para o seu pet, podendo pesquisar de acordo com o que deseja para o mesmo.
-Terá o contato da loja no fim do site, caso o cliente tenha dúvidas sobre o produto, ou sobre o pet.
-
-
