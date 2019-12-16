@@ -8,15 +8,20 @@
                body {
                     background-color: cornsilk;
                 }
-                pesquisa {
+                #pesquisa {
                     margin-right: 200px;
+                }
+
+                #cadcli  {
+                   border:1px solid black;
+                   border-radius: 5px;
                 }
 
             </style>
             <script type="text/javascript" >
     
               function limpa_formulário_cep() {
-                      //Limpa valores do formulário de cep.
+    
                       document.getElementById('rua').value=("");
                       document.getElementById('bairro').value=("");
                       document.getElementById('cidade').value=("");
@@ -25,14 +30,14 @@
           
               function meu_callback(conteudo) {
                   if (!("erro" in conteudo)) {
-                      //Atualiza os campos com os valores.
+          
                       document.getElementById('rua').value=(conteudo.logradouro);
                       document.getElementById('bairro').value=(conteudo.bairro);
                       document.getElementById('cidade').value=(conteudo.localidade);
                       document.getElementById('uf').value=(conteudo.uf);
-                  } //end if.
+                  } 
                   else {
-                      //CEP não Encontrado.
+                  
                       limpa_formulário_cep();
                       alert("CEP não encontrado.");
                   }
@@ -40,42 +45,39 @@
                   
               function pesquisacep(valor) {
           
-                  //Nova variável "cep" somente com dígitos.
+
                   var cep = valor.replace(/\D/g, '');
-          
-                  //Verifica se campo cep possui valor informado.
+
                   if (cep != "") {
           
-                      //Expressão regular para validar o CEP.
+
                       var validacep = /^[0-9]{8}$/;
           
-                      //Valida o formato do CEP.
                       if(validacep.test(cep)) {
-          
-                          //Preenche os campos com "..." enquanto consulta webservice.
+
                           document.getElementById('rua').value="...";
                           document.getElementById('bairro').value="...";
                           document.getElementById('cidade').value="...";
                           document.getElementById('uf').value="...";
           
-                          //Cria um elemento javascript.
+        
                           var script = document.createElement('script');
           
-                          //Sincroniza com o callback.
+                
                           script.src = 'https://viacep.com.br/ws/'+ cep + '/json/?callback=meu_callback';
           
-                          //Insere script no documento e carrega o conteúdo.
+     
                           document.body.appendChild(script);
           
-                      } //end if.
+                      } 
                       else {
-                          //cep é inválido.
+                        
                           limpa_formulário_cep();
                           alert("Formato de CEP inválido.");
                       }
-                  } //end if.
+                  } 
                   else {
-                      //cep sem valor, limpa formulário.
+           
                       limpa_formulário_cep();
                   }
               };
@@ -111,25 +113,25 @@
                               </a>
                             </li>
                             <li class="nav-item">
-                              <a class="nav-link" href="#">Gatos</a>
+                              <a class="nav-link" href="categoria.html">Gatos</a>
                             </li>
                             <li class="nav-item">
-                              <a class="nav-link" href="#">Pássaros</a>
+                              <a class="nav-link" href="categoria.html">Pássaros</a>
                             </li>
                             <li class="nav-item">
-                              <a class="nav-link" href="#">Acessórios</a>
+                              <a class="nav-link" href="categoria.html">Acessórios</a>
                             </li>
                             <li class="nav-item">
-                              <a class="nav-link" href="#">Roupas</a>
+                              <a class="nav-link" href="categoria.html">Roupas</a>
                             </li>
                             <li class="nav-item active dropdown">
                               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownBlog" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 Entre ou cadastre-se
                               </a>
                               <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
-                                <a class="dropdown-item" href="#">Login</a>
-                                <a class="dropdown-item" href="#">Cadastre-se</a>
-                                <a class="dropdown-item" href="#">Meu Perfil</a>
+                                <a class="dropdown-item" href="login.html">Login</a>
+                                <a class="dropdown-item" href="adicionarCliente.html">Cadastre-se</a>
+                                <a class="dropdown-item" href="perfilCliente.html">Meu Perfil</a>
                               </div>
                             </li>
                           </ul>
@@ -142,67 +144,72 @@
         <br>
             <form>
                     <div class="container">
-                        <h1 align="center">Cadastro de Cliente</h1>
+                      <fieldset class="col-md-12" id="cadcli">
+                        <div class="form-row">
+                        <legend align="center">Cadastro de Cliente</legend>
                         <br>
-                        <div class="form-group">
+                        <div class="form-group col-md-2">
                           <label for="cpf">CPF</label>
-                          <input type="number" class="form-control" id="nomeCliente">
+                          <input type="number" class="form-control" id="nomeCliente" required>
                         </div>
-                    <div class="form-group">
+                    <div class="form-group col-md-10">
                       <label for="nomeCliente">Nome Completo</label>
-                      <input type="text" class="form-control" id="nomeCliente">
+                      <input type="text" class="form-control" id="nomeCliente" required minlength="3" maxlength="50">
                     </div>
-                    <div class="form-group">
+                    <div class="form-group col-md-2">
                       <label for="nascimento">Data de Nascimento</label>
-                      <input type="text" class="form-control" id="nascimento">
+                      <input type="date" class="form-control" id="nascimento" required>
                       </div>
-                      <div class="form-group">
-                        <label for="email">E-mail</label>
-                        <input type="email" class="form-control" id="email">
-                      </div>
-                        <div class="form-group">
+                      <div class="form-group col-md-2">
                         <label for="telefone">Telefone</label>
-                        <input type="number" class="form-control" id="telefone">
+                        <input type="tel" class="form-control" id="telefone" required>
                         </div>
-                        <h1 align="center">Endereço</h1>
+                      <div class="form-group col-md-8">
+                        <label for="email">E-mail</label>
+                        <input type="email" class="form-control" id="email" required>
+                      </div>
+
+                      <br>
                         <form method="get" action=".">
-                            <div class="form-group">
+                            <div class="form-group col-md-2">
                             <label for="cep">CEP:</label>
                             <input name="cep" type="text" id="cep" value="" class="form-control"
-                                   onblur="pesquisacep(this.value);">
+                                   onblur="pesquisacep(this.value);" required>
                                   </div>
-                                   <div class="form-group">
+                                   <div class="form-group col-md-10">
                             <label for="rua">Logradouro</label>
-                            <input name="rua" type="text" id="rua" class="form-control">
+                            <input name="rua" type="text" id="rua" class="form-control" required>
                           </div>
-                            <div class="form-group">
+                            <div class="form-group col-md-2">
                             <label for="bairro">Bairro:</label>
-                            <input name="bairro" type="text" id="bairro" class="form-control">
+                            <input name="bairro" type="text" id="bairro" class="form-control" required>
                           </div>
-                            <div class="form-group">
+                            <div class="form-group col-md-2">
                             <label for="cidade">Cidade:</label> 
-                            <input name="cidade" type="text" id="cidade" class="form-control">
+                            <input name="cidade" type="text" id="cidade" class="form-control" required>
                           </div>
-                            <div class="form-group">
+                            <div class="form-group col-md-1">
                             <label for="uf">Estado:</label>
-                            <input name="uf" type="text" id="uf" class="form-control" >
+                            <input name="uf" type="text" id="uf" class="form-control" required>
                           </div>
-                          <div class="form-group">
+                          <div class="form-group col-md-1">
                               <label for="numero">Número</label>
-                              <input name="numero" type="text" id="numero" class="form-control" >
+                              <input name="numero" type="text" id="numero" class="form-control">
                             </div>
-                            <div class="form-group">
+                            <div class="form-group col-md-6">
                                 <label for="complemento">Complemento</label>
                                 <input name="complemento" type="text" id="complemento" class="form-control" >
                               </div>
-
+                            </div>
+                            </fieldset>
                           </form>
+                          <br>
                     <button type="submit" class="btn btn-primary">Enviar</button>
                     <button type="reset" class="btn btn-primary">Limpar</button>
                 </div>
                   </form>
                   <br>
-                  <footer class="py-3 bg-dark">
+                  <footer class="py-3 bg-dark fixed-bottom">
                     <div class="container">
                       <p class="m-0 text-center text-white">Copyright &copy; Vinapet 2019</p>
                     </div>
