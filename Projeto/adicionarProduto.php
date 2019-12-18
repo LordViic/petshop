@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="pt-br">
+  <?php require "adProduto.php" ?>
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -37,21 +38,21 @@
                     <div class="collapse navbar-collapse" id="navbarResponsive">
                       <ul class="navbar-nav ml-auto">
                         <li class="nav-item ">
-                          <a class="nav-link" href="categoria.html">Cães
+                          <a class="nav-link" href="#">Cães
                             <span class="sr-only">(current)</span>
                           </a>
                         </li>
                         <li class="nav-item">
-                          <a class="nav-link" href="categoria.html">Gatos</a>
+                          <a class="nav-link" href="#">Gatos</a>
                         </li>
                         <li class="nav-item">
-                          <a class="nav-link" href="categoria.html">Pássaros</a>
+                          <a class="nav-link" href="#">Pássaros</a>
                         </li>
                         <li class="nav-item">
-                          <a class="nav-link" href="categoria.html">Acessórios</a>
+                          <a class="nav-link" href="#">Acessórios</a>
                         </li>
                         <li class="nav-item">
-                          <a class="nav-link" href="categoria.html">Roupas</a>
+                          <a class="nav-link" href="#">Roupas</a>
                         </li>
                         <li class="nav-item active dropdown">
                           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownBlog" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -71,13 +72,13 @@
 </head>
     <body>
         <br>
-            <form>
+            <form action="adProduto.php" method="POST">
                     <div class="container">
                         <h1 align="center">Cadastro de Produtos</h1>
                         <br>
                     <div class="form-group">
                         <label for="fotoProduto">Foto do Produto</label>
-                        <input type="file" class="form-control-file" id="fotoProduto" >
+                        <input type="file" class="form-control-file" id="fotoProduto" required>
                     </div>
                     <div class="form-group">
                       <label for="nomeProduto">Nome do Produto</label>

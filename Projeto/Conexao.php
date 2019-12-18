@@ -3,7 +3,7 @@
   function pegaConexao()
   {
     $servidor = "localhost";
-    $banco = "PetShop";
+    $banco = "petshop";
     $usuario = "root";
     $senha = "";
     $porta = "3306";

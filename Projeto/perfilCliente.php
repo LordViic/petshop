@@ -1,8 +1,8 @@
-<!doctype html>
+!doctype html>
 <html lang="pt-br">
     <head>
       <?php 
-      require 'adCliente.php';
+      require 'upCliente.php';
       ?>
             <meta charset="utf-8">
             <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">

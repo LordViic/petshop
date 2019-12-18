@@ -2,14 +2,40 @@
 <html lang="pt-br">
 
 <head>
+    <?php
+    // definições de host, database, usuário e senha
+    $host = "localhost";
+    $db   = "petshop";
+    $user = "root";
+    $pass = "";
+    $con = mysql_pconnect($host, $user, $pass) or trigger_error(mysql_error(),E_USER_ERROR); 
+    mysql_select_db($db, $con);
+    $query = sprintf("SELECT cpf, nome, nascimento FROM cliente");
+    $dados = mysql_query($query, $con) or die(mysql_error());
 
+    $linha = mysql_fetch_assoc($dados);
+    $total = mysql_num_rows($dados);
+    ?>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="">
   <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <link href="css/simple-sidebar.css" rel="stylesheet">
-
+  <img src="img/vinapet1.png" width="10%" align="left"><br><br>
+  <div class="container">
+        <div class="card my-4" >
+          <h5 class="card-header">Pesquise</h5>
+          <div class="card-body">
+            <div class="input-group" width="10%">
+              <input type="text" class="form-control" placeholder="Encontre um cliente">
+              <span class="input-group-btn">
+                <button class="btn btn-secondary" type="button">Go!</button>
+              </span>
+            </div>
+          </div>
+        </div>
+          </div> 
 </head>
 
 <body>
@@ -48,69 +74,32 @@
               </ul>
             </div>
           </nav>
-
+          <?php 
+          if($total > 0) {
+        do {
+?>
           <table class="table">
                 <thead>
                   <tr>
                     <th scope="col">#</th>
-                    <th scope="col">Primeiro</th>
-                    <th scope="col">Último</th>
-                    <th scope="col">Nickname</th>
+                    <th scope="col">Nome</th>
+                    <th scope="col">CPF</th>
+                    <th scope="col">Data de Nascimento</th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr>
                     <th scope="row">1</th>
-                    <td>Nome</td>
-                    <td>CPF</td>
-                    <td>E-mail</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">2</th>
-                    <td>Jacob</td>
-                    <td>Thornton</td>
-                    <td>@fat</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">3</th>
-                    <td>Larry</td>
-                    <td>the Bird</td>
-                    <td>@twitter</td>
+                    <td><?=$linha['nome']?></td>
+                    <td><?=$linha['cpf']?></td>
+                    <td><?=$linha['nascimento']?></td>
                   </tr>
                 </tbody>
               </table>
-
-
-              <table class="table">
-                    <thead>
-                      <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Nome</th>
-                        <th scope="col">Categoria</th>
-                        <th scope="col">Status</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <th scope="row">1</th>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                      </tr>
-                      <tr>
-                        <th scope="row">2</th>
-                        <td>Jacob</td>
-                        <td>Thornton</td>
-                        <td>@fat</td>
-                      </tr>
-                      <tr>
-                        <th scope="row">3</th>
-                        <td>Larry</td>
-                        <td>the Bird</td>
-                        <td>@twitter</td>
-                      </tr>
-                    </tbody>
-                  </table>
+              <?php
+        }while($linha = mysql_fetch_assoc($dados));
+    }
+?>
     <footer class="py-3 bg-dark">
     <div class="container">
       <p class="m-0 text-center text-white">Copyright &copy; Vinapet 2019</p>

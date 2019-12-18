@@ -1,5 +1,16 @@
 <!doctype html>
 <html lang="pt-br">
+    <html lang="pt-br">
+        <?php
+        $host = "localhost";
+        $db   = "petshop";
+        $user = "root";
+        $pass = "";
+        $con = mysql_pconnect($host, $user, $pass) or trigger_error(mysql_error(),E_USER_ERROR); 
+        mysql_select_db($db, $con);
+        $query = sprintf("SELECT foto, nome, preco, obs FROM produto where id=  ");
+        $dados = mysql_query($query, $con) or die(mysql_error());
+        ?>
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -37,21 +48,21 @@
                     <div class="collapse navbar-collapse" id="navbarResponsive">
                       <ul class="navbar-nav ml-auto">
                         <li class="nav-item ">
-                          <a class="nav-link" href="#">Cães
+                          <a class="nav-link" href="categoria.html">Cães
                             <span class="sr-only">(current)</span>
                           </a>
                         </li>
                         <li class="nav-item">
-                          <a class="nav-link" href="#">Gatos</a>
+                          <a class="nav-link" href="categoria.html">Gatos</a>
                         </li>
                         <li class="nav-item">
-                          <a class="nav-link" href="#">Pássaros</a>
+                          <a class="nav-link" href="categoria.html">Pássaros</a>
                         </li>
                         <li class="nav-item">
-                          <a class="nav-link" href="#">Acessórios</a>
+                          <a class="nav-link" href="categoria.html">Acessórios</a>
                         </li>
                         <li class="nav-item">
-                          <a class="nav-link" href="#">Roupas</a>
+                          <a class="nav-link" href="categoria.html">Roupas</a>
                         </li>
                         <li class="nav-item active dropdown">
                           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownBlog" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -77,67 +88,38 @@
                         <br>
                     <div class="form-group">
                         <label for="fotoProduto">Foto do Produto</label>
-                        <input type="file" class="form-control-file" id="fotoProduto" required>
+                        <h1><? $foto ?></h1>
                     </div>
                     <div class="form-group">
                       <label for="nomeProduto">Nome do Produto</label>
-                      <input type="text" class="form-control" id="nomeProduto" required>
+                      <h1><? $nomeProduto ?></h1>
                     </div>
                     <div class="form-group">
                         <label for="custo">Custo</label>
-                        <input type="number" class="form-control" id="custo" required>
+                        <h1><? $nomeProduto ?></h1>
                       </div>
                     <div class="form-group">
                       <label for="preco">Preço</label>
-                      <input type="text" class="form-control" id="preco" required>
+                      <h1><? $preco ?></h1>
                     </div>
                     <div class="form-group">
                       <label for="marca">Marca</label>
-                      <input type="text" class="form-control" id="marca" required>
+                      <h1><? $marca ?></h1>
                     </div>
                     <div class="form-group">
                       <label for="estoque">Quantidade no Estoque</label>
-                      <input type="number" class="form-control" id="estoque" required>
+                      <h1><? $estoque ?></h1>
                     </div>
                       <br>  
                       <fieldset class = "form-group">
                         <legend   class = "col-form-label col-sm-2 pt-0">Categoria</legend>
-                        <div      class = "form-check" >
-                        <input    class = "form-check-input" type = "checkbox" value = "caes" id = "caes" >
-                        <label    class = "form-check-label" for  = "caes">
-                                              Cães
-                                      </label>
-                      </div>
-                      <div      class = "form-check">
-                        <input    class = "form-check-input" type = "checkbox" value = "gatos" id = "gatos">
-                        <label    class = "form-check-label" for  = "gatos">
-                                              Gatos
-                                      </label>
-                      </div>
-                      <div      class = "form-check">
-                        <input    class = "form-check-input" type = "checkbox" value = "passaros" id = "passaros">
-                        <label    class = "form-check-label" for  = "passaros">
-                                              Pássaros
-                                      </label>
-                      </div>
-                      <div      class = "form-check">
-                        <input    class = "form-check-input" type = "checkbox" value = "acessorios" id = "acessorios">
-                        <label    class = "form-check-label" for  = "acessorios">
-                                              Acessórios
-                                      </label>
-                      </div>
-                      <div      class = "form-check">
-                        <input    class = "form-check-input" type = "checkbox" value = "roupas" id = "roupas">
-                        <label    class = "form-check-label" for  = "caes">
-                                              Roupas
-                                      </label>
+                        <h1><? $categoria ?></h1>
                       </div>
                     <div class="form-group">
                       <label for="obs">Observações</label>
-                      <textarea type="text" class="form-control" id="obs"></textarea>
+                      <h1><? $obs ?></h1>
                     </div>
-                    <button type="submit" class="btn btn-primary">Enviar</button>
-                    <button type="reset" class="btn btn-primary">Limpar</button>
+                    <button type="submit" class="btn btn-primary" onclick="AddCarrinho">Adicionar ao carrinho</button>
                 </div>
               </div>
                   </form>
@@ -146,6 +128,16 @@
                         <p class="m-0 text-center text-white">Copyright &copy; Vinapet 2019</p>
                       </div>
                     </footer>
+                    <script>
+                function AddCarrinho(nome, qtd, valor, posicao)
+                { 
+                localStorage.setItem("nome" + posicao, nome);
+                localStorage.setItem("qtd" + posicao, qtd);
+                valor = valor * qtd;
+                localStorage.setItem("valor" + posicao, valor);
+                alert("Produto adicionado ao carrinho!");
+                }
+               </script>
                     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
